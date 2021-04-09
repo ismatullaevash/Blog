@@ -10,20 +10,18 @@ export class PostService {
 
   constructor(private http: HttpClient) { }
   getPosts(page, tag, category): Observable<BlogPost[]> {
-    let params = {
-      page: page,
-      perPage: perPage.toString(),
-    }
-
+    let str=`https://ancient-badlands-34803.herokuapp.com/api/posts?page=`;
+    str+=page+'&perPage='+perPage;
     if (tag != null || tag != undefined) {
-      params["tag"] = tag;
+      str+='&tag='+tag;
+
     }
 
     if (category != null || category != undefined) {
-      params["category"] = category;
+      str+='&category='+category;
     }
-
-    return this.http.get<BlogPost[]>(`https://ancient-badlands-34803.herokuapp.com/api/posts`,{ params });
+   
+    return this.http.get<BlogPost[]>(str);
   }
   getPostByID(id): Observable<BlogPost> {
     return this.http.get<BlogPost>(`https://ancient-badlands-34803.herokuapp.com/api/posts/${id}`);
