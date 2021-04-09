@@ -11,14 +11,15 @@
                 <div class="title"><span>{{post.postedBy}}</span></div>
             </a>
             <div class="d-flex align-items-center flex-wrap">
-                <div class="date"><i class="icon-clock"></i> {{post.postDate}}</div>
+                <div class="date"><i class="icon-clock"></i> {{post.postDate | date:'mediumDate'}}</div>
                 <div class="views"><i class="icon-eye"></i> {{post.views}}</div>
                 <div class="comments meta-last"><i class="icon-comment"></i>{{post.comments.length}}</div>
             </div>
         </div>
         <div class="post-body" [innerHTML]="post.post"></div>
         <div class="post-tags">
-            <a routerLink class="tag" *ngFor="let tag of post.tags">{{tag}}</a>
+            <a [routerLink]="['/blog']" [queryParams]="{ tag: tag.substring(1) }" class="tag"
+                *ngFor="let tag of post.tags">{{tag}}</a>
         </div>
         <div class="post-comments">
             <header>

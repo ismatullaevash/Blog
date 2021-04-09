@@ -3,15 +3,14 @@ import {BlogPost} from '../BlogPost'
 import { PostService } from '../post.service';
 
 @Component({
-  selector: 'app-latest-posts',
-  templateUrl: './latest-posts.component.html',
-  styleUrls: ['./latest-posts.component.css']
+  selector: 'app-footer-posts',
+  templateUrl: './footer-posts.component.html',
+  styleUrls: ['./footer-posts.component.css']
 })
-export class LatestPostsComponent implements OnInit {
+export class FooterPostsComponent implements OnInit {
   blogPosts: Array<BlogPost>;
   constructor(private data: PostService) { }
   ngOnInit(): void {
     this.data.getPosts(1,null,null).subscribe(data=>this.blogPosts=data.slice(0,3));
   }
-
 }
